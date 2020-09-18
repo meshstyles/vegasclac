@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>VegasCalc</title>
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="render.js"></script>
+</head>
+
+<body>
+    <div class="title_nav">
+        <h1 class="title_header">VEGAS CALC</h1>
+    </div>
+    <div class="sub_title">
+        <p class="explainer">This is a tool that helps you to calculate all possible ways sony vegas can use an RGB color.</p>
+    </div>
+    <hr class="solid">
+    <div class="lower">
+        <h3 class="color_header">Input</h3>
+        <div class="color_input">
+            <!-- hex rgb-->
+            <p class="form_prefix">Hex RGB : # <input placeholder="ffffff" type="text" id="form_col_hex_rgb"
+                maxlength="6" size="6"></p>
+            <!-- dec rgb-->
+            <p class="form_prefix">Dec R: <input placeholder="255" type="text" id="form_col_dec_r" maxlength="3"
+                size="3" />  Dec G: <input placeholder="255" type="text" id="form_col_dec_g" maxlength="3"
+                size="3" />  Dec B: <input placeholder="255" type="text" id="form_col_dec_b" maxlength="3"
+                size="3" /></p>
+            <p class="form_prefix">Flt R: <input placeholder="1,00000" type="text" id="form_col_float_r" maxlength="7" 
+                size="7"/>  Flt G: <input placeholder="1,00000" type="text" id="form_col_float_g" maxlength="7" 
+                size="7"/>  Flt G: <input placeholder="1,00000" type="text" id="form_col_float_b" maxlength="7" 
+                size="7"/></p>
+            <button class="submit" type="button" onclick="getColor();">submit</button>
+        </div>
+    </div>
+    <!--div style="display: none;" id="dec_col_res"-->
+    <div id="color_result">
+        <ul>
+            <li>
+                <div class="color_square"></div>
+            </li>
+            <li class="text_result">
+                <ol>
+                    <li>
+                        <p>hex #caffee</p>
+                    </li>
+                    <li>
+                        <p>255, 255, 255, 255</p>
+                    </li>
+                    <li>
+                        <p>1,0; 1,0; 1,0; 1,0</p>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
