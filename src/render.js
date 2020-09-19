@@ -20,14 +20,26 @@ function color_coverter() {
         decres = hex2dec(hexres);
         floatres = dec2float(decres);
     } else if (col_dec_r && col_dec_g && col_dec_b) {
+        // code quality is poor but since I have to use parse float for float rgb I cant reuse a function anyway
+        decres = [];
+        decres.push(parseInt(col_dec_r));
+        decres.push(parseInt(col_dec_g));
+        decres.push(parseInt(col_dec_b));
+        hexres = dec2hex(decres);
+        floatres = dec2float(decres);
 
     } else if (col_float_r && col_float_g && col_float_b) {
-
+        floatres = [];
+        floatres.push(parseFloat(col_float_r));
+        floatres.push(parseFloat(col_float_g));
+        floatres.push(parseFloat(col_float_b));
+        decres = float2dec(floatres);
+        hexres = dec2hex(decres);
     }
 
     document.getElementById("hex_color_res").innerHTML = `hex #${hexres}`;
     document.getElementById("dec_color_res").innerHTML = `${decres[0]}, ${decres[1]}, ${decres[2]}, 255`;
-    document.getElementById("float_color_res").innerHTML = `${floatres[0]}, ${floatres[1]}, ${floatres[2]}, 255`;
+    document.getElementById("float_color_res").innerHTML = `${floatres[0]}, ${floatres[1]}, ${floatres[2]}, 1,000`;
     document.getElementById("color_square").style.backgroundColor = `#${hexres}`
     color_result.style.display = "block";
 }
