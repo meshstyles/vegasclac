@@ -1,5 +1,4 @@
-![Logo](./docs/src/icon64.png)   
-# vegasclac
+![Logo](./docs/src/header.png)  
 ### calculating vegas relavant RGB color value representations
 
 ## The Problem
