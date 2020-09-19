@@ -4,6 +4,8 @@ submitBtn.onclick = color_coverter;
 const clearBtn = document.getElementById("clear");
 clearBtn.onclick = clearAll;
 
+let global_color_output = '';
+
 function color_coverter() {
     let col_hex_rgb = form_col_hex_rgb.value;
 
@@ -40,11 +42,14 @@ function color_coverter() {
     } else {
         return alert("please enter a color value!");
     }
-
-    document.getElementById("hex_color_res").innerHTML = `hex #${hexres}`;
-    document.getElementById("dec_color_res").innerHTML = `${decres[0]}, ${decres[1]}, ${decres[2]}, 255`;
-    document.getElementById("float_color_res").innerHTML = `${floatres[0]}, ${floatres[1]}, ${floatres[2]}, 1,000`;
+    let hex = `hex #${hexres}`;
+    let dec = `${decres[0]}, ${decres[1]}, ${decres[2]}, 255`;
+    let float = `${floatres[0]}, ${floatres[1]}, ${floatres[2]}, 1,000`;
+    document.getElementById("hex_color_res").innerHTML = hex;
+    document.getElementById("dec_color_res").innerHTML = dec;
+    document.getElementById("float_color_res").innerHTML = float;
     document.getElementById("color_square").style.backgroundColor = `#${hexres}`
+    global_color_output = `${hex}\n${dec}\n${float}`
     color_result.style.display = "block";
 }
 
@@ -79,6 +84,12 @@ function float2dec(floatres) {
 function clearAll() {
     color_result.style.display = "none";
     document.querySelectorAll('input').forEach(input => input.value = '');
-    // let inputs = document.querySelectorAll('input').forEach(input => input.value = '');;
-    // inputs.forEach(input => input.value = '');
+    global_color_output = '';
+}
+function copyOutput() {
+    navigator.clipboard.writeText(global_color_output).then(function () {
+        /* clipboard successfully set */
+    }, function () {
+        /* clipboard write failed */
+    });
 }
