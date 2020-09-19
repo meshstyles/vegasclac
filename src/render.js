@@ -1,6 +1,8 @@
 const submitBtn = document.getElementById("submit");
 submitBtn.onclick = color_coverter;
 
+const clearBtn = document.getElementById("clear");
+clearBtn.onclick = clearAll;
 
 function color_coverter() {
     let col_hex_rgb = form_col_hex_rgb.value;
@@ -35,6 +37,8 @@ function color_coverter() {
         floatres.push(parseFloat(col_float_b));
         decres = float2dec(floatres);
         hexres = dec2hex(decres);
+    } else {
+        return alert("please enter a color value!");
     }
 
     document.getElementById("hex_color_res").innerHTML = `hex #${hexres}`;
@@ -43,7 +47,6 @@ function color_coverter() {
     document.getElementById("color_square").style.backgroundColor = `#${hexres}`
     color_result.style.display = "block";
 }
-
 
 function hex2dec(hexres) {
     let decres = [];
@@ -62,7 +65,7 @@ function dec2float(decres) {
 }
 
 function dec2hex(decres) {
-    return `${decres[0].toString(16)}${decres[1].toString(16)}${decres[2].toString(16)}`;
+    return `${parseInt(decres[0]).toString(16)}${parseInt(decres[1]).toString(16)}${parseInt(decres[2]).toString(16)}`;
 }
 
 function float2dec(floatres) {
@@ -71,4 +74,11 @@ function float2dec(floatres) {
     decres.push((floatres[1] * 255).toFixed(0));
     decres.push((floatres[2] * 255).toFixed(0));
     return decres;
+}
+
+function clearAll() {
+    color_result.style.display = "none";
+    document.querySelectorAll('input').forEach(input => input.value = '');
+    // let inputs = document.querySelectorAll('input').forEach(input => input.value = '');;
+    // inputs.forEach(input => input.value = '');
 }
