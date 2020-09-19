@@ -1,5 +1,6 @@
-# vegasclac ![Logo](./docs/src/icon64.png)   
-## calculating vegas relavant RGB color value representations
+![Logo](./docs/src/icon64.png)   
+# vegasclac
+### calculating vegas relavant RGB color value representations
 
 ## The Problem
 Vegas always used multiple representations for colors so you sometimes have to calculate these values.  
