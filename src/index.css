@@ -71,3 +71,10 @@ div.color_square{
     width: 50px;
     border: 1px solid black;
 }
+div.warning{
+    padding: 0.1%;
+    background-color: #ff4444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,12 +1,16 @@
 const submitBtn = document.getElementById("submit");
 submitBtn.onclick = color_coverter;
 
-const clearBtn = document.getElementById("clear");
-clearBtn.onclick = clearAll;
+document.getElementById('clear')
+    .addEventListener('click', () => {
+        clearAll(true);
+    });
 
 let global_color_output = '';
 
 function color_coverter() {
+    warning.style.display = "none";
+
     let col_hex_rgb = form_col_hex_rgb.value;
 
     let col_dec_r = form_col_dec_r.value;
@@ -40,7 +44,8 @@ function color_coverter() {
         decres = float2dec(floatres);
         hexres = dec2hex(decres);
     } else {
-        return alert("please enter a color value!");
+        warning.style.display = "block";
+        return;
     }
     let hex = `hex #${hexres}`;
     let dec = `${decres[0]}, ${decres[1]}, ${decres[2]}, 255`;
@@ -55,17 +60,23 @@ function color_coverter() {
 
 function hex2dec(hexres) {
     let decres = [];
-    decres.push(parseInt(hexres.substring(0, 2), 16));
-    decres.push(parseInt(hexres.substring(2, 4), 16));
-    decres.push(parseInt(hexres.substring(4, 6), 16));
+
+    // decres.push(parseInt(hexres.substring(0, 2), 16));
+    // decres.push(parseInt(hexres.substring(2, 4), 16));
+    // decres.push(parseInt(hexres.substring(4, 6), 16));
+
+    for (let i = 0; i < 3; i++) {
+        decres.push(parseInt(hexres.substring((0 + 2 * i), (2 + 2 * i)), 16));
+    }
+
     return decres;
 }
 
 function dec2float(decres) {
     let floatres = [];
-    floatres.push((decres[0] / 255).toFixed(3).replace('.', ','));
-    floatres.push((decres[1] / 255).toFixed(3).replace('.', ','));
-    floatres.push((decres[2] / 255).toFixed(3).replace('.', ','));
+    decres.forEach(dcolor => {
+        floatres.push((dcolor / 255).toFixed(3).replace('.', ','));
+    });
     return floatres;
 }
 
@@ -75,19 +86,21 @@ function dec2hex(decres) {
 
 function float2dec(floatres) {
     let decres = [];
-    decres.push((floatres[0] * 255).toFixed(0));
-    decres.push((floatres[1] * 255).toFixed(0));
-    decres.push((floatres[2] * 255).toFixed(0));
+    floatres.forEach(fcolor => {
+        decres.push((fcolor * 255).toFixed(0));
+    });
     return decres;
 }
 
-function clearAll() {
-    color_result.style.display = "none";
+function clearAll(divclick) {
+    if (divclick) color_result.style.display = "none";
     document.querySelectorAll('input').forEach(input => input.value = '');
     global_color_output = '';
 }
+
 function copyOutput() {
     navigator.clipboard.writeText(global_color_output).then(function () {
+        clearAll()
         /* clipboard successfully set */
     }, function () {
         /* clipboard write failed */
