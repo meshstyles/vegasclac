@@ -71,6 +71,7 @@ function color_coverter() {
     document.getElementById("color_square").style.backgroundColor = `#${hexres}`
     global_color_output = `${hex}\n${dec}\n${float}`
     color_result.style.display = "block";
+    document.querySelectorAll('input').forEach(input => input.value = '');
 }
 
 function hex2dec(hexres) {
@@ -96,7 +97,6 @@ function dec2hex(decres) {
         hexcolor = hexcolor + parseInt(dcolor).toString(16);
     });
     return hexcolor;
-    return `${parseInt(decres[0]).toString(16)}${parseInt(decres[1]).toString(16)}${parseInt(decres[2]).toString(16)}`;
 }
 
 function float2dec(floatres) {
