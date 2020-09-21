@@ -3,7 +3,9 @@ submitBtn.onclick = color_coverter;
 
 document.getElementById('clear')
     .addEventListener('click', () => {
-        clearAll(true);
+        color_result.style.display = "none";
+        document.querySelectorAll('input').forEach(input => input.value = '');
+        global_color_output = '';
     });
 
 let global_color_output = '';
@@ -60,11 +62,6 @@ function color_coverter() {
 
 function hex2dec(hexres) {
     let decres = [];
-
-    // decres.push(parseInt(hexres.substring(0, 2), 16));
-    // decres.push(parseInt(hexres.substring(2, 4), 16));
-    // decres.push(parseInt(hexres.substring(4, 6), 16));
-
     for (let i = 0; i < 3; i++) {
         decres.push(parseInt(hexres.substring((0 + 2 * i), (2 + 2 * i)), 16));
     }
@@ -81,7 +78,12 @@ function dec2float(decres) {
 }
 
 function dec2hex(decres) {
-    return `${parseInt(decres[0]).toString(16)}${parseInt(decres[1]).toString(16)}${parseInt(decres[2]).toString(16)}`;
+    let hexcolor = ''
+    decres.forEach(dcolor => {
+        hexcolor = hexcolor + parseInt(dcolor).toString(16);
+    });
+    return hexcolor;
+    // return `${parseInt(decres[0]).toString(16)}${parseInt(decres[1]).toString(16)}${parseInt(decres[2]).toString(16)}`;
 }
 
 function float2dec(floatres) {
@@ -92,15 +94,8 @@ function float2dec(floatres) {
     return decres;
 }
 
-function clearAll(divclick) {
-    if (divclick) color_result.style.display = "none";
-    document.querySelectorAll('input').forEach(input => input.value = '');
-    global_color_output = '';
-}
-
 function copyOutput() {
     navigator.clipboard.writeText(global_color_output).then(function () {
-        clearAll()
         /* clipboard successfully set */
     }, function () {
         /* clipboard write failed */
