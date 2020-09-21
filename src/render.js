@@ -1,11 +1,24 @@
-const submitBtn = document.getElementById("submit");
-submitBtn.onclick = color_coverter;
+document.getElementById("submit")
+    .addEventListener('click', () => {
+        color_coverter();
+    });
 
 document.getElementById('clear')
     .addEventListener('click', () => {
         color_result.style.display = "none";
+        warning.style.display = "none";
         document.querySelectorAll('input').forEach(input => input.value = '');
         global_color_output = '';
+    });
+
+document.getElementById('text_result_clickable')
+    .addEventListener('click', () => {
+        navigator.clipboard.writeText(global_color_output).then(function () {
+            /* clipboard successfully set */
+            notification_success_copied();
+        }, function () {
+            /* clipboard write failed */
+        });
     });
 
 let global_color_output = '';
@@ -40,13 +53,13 @@ function color_coverter() {
 
     } else if (col_float_r && col_float_g && col_float_b) {
         floatres = [];
-        floatres.push(parseFloat(col_float_r));
-        floatres.push(parseFloat(col_float_g));
-        floatres.push(parseFloat(col_float_b));
+        floatres.push(parseFloat(col_float_r).replace(',', '.'));
+        floatres.push(parseFloat(col_float_g).replace(',', '.'));
+        floatres.push(parseFloat(col_float_b).replace(',', '.'));
         decres = float2dec(floatres);
         hexres = dec2hex(decres);
     } else {
-        warning.style.display = "block";
+        notification_error_empty();
         return;
     }
     let hex = `hex #${hexres}`;
@@ -83,7 +96,7 @@ function dec2hex(decres) {
         hexcolor = hexcolor + parseInt(dcolor).toString(16);
     });
     return hexcolor;
-    // return `${parseInt(decres[0]).toString(16)}${parseInt(decres[1]).toString(16)}${parseInt(decres[2]).toString(16)}`;
+    return `${parseInt(decres[0]).toString(16)}${parseInt(decres[1]).toString(16)}${parseInt(decres[2]).toString(16)}`;
 }
 
 function float2dec(floatres) {
@@ -94,10 +107,14 @@ function float2dec(floatres) {
     return decres;
 }
 
-function copyOutput() {
-    navigator.clipboard.writeText(global_color_output).then(function () {
-        /* clipboard successfully set */
-    }, function () {
-        /* clipboard write failed */
-    });
+function notification_error_empty() {
+    document.getElementById("warning_message").innerHTML = "please enter a color value!";
+    warning.style.display = "block";
+    warning.style = "display: block; background-color: #ff4444;";
+    warning_message.style = 'color: #fbfbfb'
+}
+function notification_success_copied() {
+    document.getElementById("warning_message").innerHTML = "Copied to clipboard";
+    warning.style = "display: block; background-color: #abc8f8;";
+    warning_message.style = 'color: #0f0f0f'
 }

@@ -16,8 +16,8 @@
         <p class="explainer">This is a tool that helps you to calculate all possible ways sony vegas can use a RGB color.</p>
     </div>
     <hr class="solid">
-    <div style="display: none;" class="warning" id="warning">
-        <p class="explainer">please enter a color value!</p>
+    <div class="warning" id="warning">
+        <p class="explainer" id="warning_message"></p>
     </div>
 
     <div class="lower">
@@ -39,13 +39,13 @@
             <button class="submit" type="button" id="clear">clear</button>
         </div>
     </div>
-    <div style="display: none;" id="color_result" class="color_result" >
+    <div id="color_result" class="color_result" >
         <ul>
             <li>
                 <div class="color_square" id="color_square"></div>
             </li>
             <li class="text_result">
-                <div onclick="copyOutput();">
+                <div id="text_result_clickable">
                     <ol>
                         <li>
                             <p id="hex_color_res">hex #caffee</p>
