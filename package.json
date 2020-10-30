@@ -19,12 +19,16 @@
     "license": "MIT",
     "config": {
         "forge": {
-            "packagerConfig": {},
+            "packagerConfig": {
+                "icon": "src/assets/Icons/win/icon.ico"
+            },
             "makers": [
                 {
                     "name": "@electron-forge/maker-squirrel",
                     "config": {
-                        "name": "vegascalc"
+                        "name": "vegascalc",
+                        "loadingGif": "docs/src/header.png",
+                        "setupIcon": "src/assets/Icons/win/icon.ico"
                     }
                 },
                 {
@@ -36,10 +40,6 @@
                 {
                     "name": "@electron-forge/maker-deb",
                     "config": {}
-                },
-                {
-                    "name": "@electron-forge/maker-rpm",
-                    "config": {}
                 }
             ]
         }
@@ -50,9 +50,9 @@
     "devDependencies": {
         "@electron-forge/cli": "^6.0.0-beta.53",
         "@electron-forge/maker-deb": "^6.0.0-beta.53",
-        "@electron-forge/maker-rpm": "^6.0.0-beta.53",
         "@electron-forge/maker-squirrel": "^6.0.0-beta.53",
         "@electron-forge/maker-zip": "^6.0.0-beta.53",
+        "@electron-forge/plugin-webpack": "^6.0.0-beta.53",
         "electron": "10.1.2"
     }
 }
