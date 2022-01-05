@@ -1,1 +1,3 @@
 theme: jekyll-theme-minimal
+logo: src/assets/Icons/png/icon.png
+show_downloads: true
